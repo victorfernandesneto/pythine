@@ -15,6 +15,11 @@ class Usuario:
         return self._senha
     
 
+    @property
+    def lista_de_tarefas(self):
+        return self._lista_de_tarefas
+    
+
     @username.setter
     def username(self, username_novo):
         self._username = username_novo
@@ -24,7 +29,7 @@ class Usuario:
     def senha(self, senha_nova):
         self._senha = senha_nova
 
-
+    
     def __eq__(self, outro):
         return self._username == outro._username
 
