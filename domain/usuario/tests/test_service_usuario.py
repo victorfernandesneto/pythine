@@ -9,13 +9,13 @@ def usuario_exemplo():
 
 class TestClass:
     def test_cria_usuario(self, usuario_exemplo):
-        usuario = UsuarioService.cadastra_usuario(self, 'pofesso', '1234')
+        usuario = UsuarioService.cadastra_usuario('pofesso', '1234')
 
         assert usuario == usuario_exemplo
 
     def test_atualiza_cadastro(self, usuario_exemplo):
         usuario = Usuario('victao', '1234')
 
-        usuario_exemplo = UsuarioService.atualiza_usuario(self, usuario_exemplo, 'victao', '1234')
+        usuario_exemplo = UsuarioService.atualiza_usuario(usuario_exemplo, 'victao', '1234')
 
         assert usuario == usuario_exemplo
