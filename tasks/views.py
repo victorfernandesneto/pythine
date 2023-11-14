@@ -4,6 +4,8 @@ from .forms import TaskForm
 
 
 def task_index_view(request):
+    if not request.user.is_authenticated:
+        return redirect('index')
     user_id = request.user.id
     tasks = Task.objects.filter(user_id=user_id)
 
@@ -15,10 +17,13 @@ def task_index_view(request):
 
 
 def new_task_view(request):
+    if not request.user.is_authenticated:
+        return redirect('index')
     if request.method == 'POST':
         form = TaskForm(request.POST)
         if form.is_valid():
-            form.save(request)
+            form.instance.user = request.user
+            form.save()
             return redirect('task_index')
     else:
         form = TaskForm()
@@ -35,6 +40,8 @@ def toggle_finish_task(request):
 
 
 def delete_task(request, id):
+    if not request.user.is_authenticated:
+        return redirect('index')
     query = Task.objects.get(id=id)
     # Fazer popup de "tem certeza?"
     query.delete()

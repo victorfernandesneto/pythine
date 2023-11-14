@@ -1,6 +1,14 @@
 {% extends 'shared/base.html' %}
 <body>
     {% block content %}
+    <form method="post" class="formulario registro">
+        <table>
+            {% csrf_token %}
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="Register" class="botao botao-form">
+    </form>
+    <p class="redireciona-login">Already a member? <a href="{% url 'login' %}" class="redireciona-link">Login</a></p>
     {% endblock %}
 </body>
 

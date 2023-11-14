@@ -7,6 +7,10 @@
         --branco: white;
     }
 
+    a{
+        text-decoration: none;
+    }
+
     body{
         background-color: var(--cor-de-fundo);
         font-family: var(--fonte);
@@ -42,9 +46,52 @@
         background-color: rgb(149, 24, 24);
     }
 
+    .botoes-login{
+        display: flex;
+        align-items: center;
+        margin-top: 100%;
+        flex-direction: column;
+    }
 
+    .login{
+        font-size: 2.5rem;
+        margin-bottom: 10%;
+        background-color: var(--roxo);
+    }
 
     .botao-form{
         margin-top: 1rem;
         margin-left: 1rem;
+    }
+
+    footer{
+        background-color: var(--cinza-escuro);
+        text-align: center;
+        display: block;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        color: rgb(180, 180, 180);
+        padding: 2% 0 2% 0;
+    }
+
+    .formulario{
+        margin-top: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+        align-content: center;
+    }
+
+    .redireciona-login{
+        margin-top: 5%;
+        color: var(--cinza-escuro);
+        text-align: center;
+    }
+
+    .redireciona-link{
+        color: var(--cinza-escuro);
     }

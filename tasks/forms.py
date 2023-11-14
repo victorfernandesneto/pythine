@@ -6,13 +6,12 @@ class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
         fields = ['task_name', 'deadline']
-
-    def save(self, request):
-        task = Task(
-            task_name=self.cleaned_data['task_name'],
-            deadline=self.cleaned_data['deadline'],
-            user=request.user
-        )
-        task.save()
-        return task
-    
+        labels = {
+            'task_name': 'Task name',
+            'deadline': 'DEADLINE'
+        }
+        widgets = {
+            'task_name': forms.TextInput(),
+            'deadline': forms.DateTimeInput(format='%d/%m/%Y %H:%M',
+                                            attrs={'type': 'datetime-local'})
+        }

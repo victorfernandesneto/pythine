@@ -4,15 +4,15 @@
 <body>
     {% block content %}
     <div class="navegacao">
-        <a href="#" class="logout">
+        <a href="{% url 'logout' %}" class="logout">
             <img src="{% static 'assets/logout.png' %}">
-        <a href="{% url 'new_task'%}"><button class="botao">Novo</button></a>
+        <a href="{% url 'new_task'%}"><button class="botao">New</button></a>
     </div>
     {% if tasks %}
     <table>
         <tr>
-            <th>Nome da tarefa</th>
-            <th>Finalizada</th>
+            <th>Task name</th>
+            <th>Finished</th>
             <th></th>
         </tr>
         {% for task in tasks %}
@@ -23,7 +23,7 @@
             {% else %}
             <td><input type="checkbox" id="finished"></td>
             {% endif %}
-            <td><a href="{% url 'delete_task' task.id %}">Deletar</a></td>
+            <td><a href="{% url 'delete_task' task.id %}">Delete</a></td>
         </tr>
         {% endfor %}
     </table>

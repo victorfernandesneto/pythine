@@ -1,6 +1,10 @@
 {% extends 'shared/base.html' %}
 <body>
     {% block content %}
+    <div class="botoes-login">
+        <a href="{% url 'login'%}"><button class="botao login">Login</button></a>
+        <a href="{% url 'register'%}"><button class="botao login">Cadastro</button></a>
+    </div>
     {% endblock %}
 </body>
 
