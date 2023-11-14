@@ -46,3 +46,20 @@ def delete_task(request, id):
     # Fazer popup de "tem certeza?"
     query.delete()
     return redirect('task_index')
+
+
+def edit_task_view(request, id):
+    if not request.user.is_authenticated:
+        return redirect('index')
+    query = Task.objects.get(id=id)
+    form = TaskForm(instance=query)
+
+    if request.method == 'POST':
+        form = TaskForm(request.POST, instance=query)
+        return redirect('task_index')
+    
+    return render(
+        request,
+        'tasks/edit.html',
+        {'form': form}
+    )

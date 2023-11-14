@@ -12,12 +12,14 @@
     <table>
         <tr>
             <th>Task name</th>
+            <th>Deadline</th>
             <th>Finished</th>
             <th></th>
         </tr>
         {% for task in tasks %}
         <tr>
-            <td>{{ task.task_name }}</td>
+            <td><a href="{% url 'edit_task' task.id %}">{{ task.task_name }}</a></td>
+            <td>{{ task.deadline }}</td>
             {% if task.finished %}
             <td><input checked type="checkbox" id="finished"></td>
             {% else %}
