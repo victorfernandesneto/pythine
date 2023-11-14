@@ -2,14 +2,14 @@ from ..models.model_tarefa import Tarefa
 from domain.usuario.models.model_usuario import Usuario
 
 
-usuario = Usuario('pofesso', '1234')
-tarefa = ('pofesso', 'Lavar a louça', 'Hoje')
+usuario = Usuario('pofesso@email.com', '1234')
+tarefa = ('pofesso@email.com', 'Lavar a louça', 'Hoje')
 
 
 class TarefaService:
     @staticmethod
     def cria_tarefa(usuario, nome_da_tarefa, prazo):
-        tarefa = Tarefa(usuario.username, nome_da_tarefa, prazo)
+        tarefa = Tarefa(usuario.email, nome_da_tarefa, prazo)
         usuario.lista_de_tarefas.append(tarefa)
         return tarefa
     

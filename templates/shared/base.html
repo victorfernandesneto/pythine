@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pythine</title>
+    <link rel="stylesheet" href="{% static 'styles/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+</head>
+
+<body>
+    <header>
+        <img src="{% static 'assets/notepad.png' %}" class="header__imagem">
+    </header>
+    <main>
+    {% block content %}
+    {% endblock %}
+    </main>
+    <footer>
+        Desenvolvido por Victor Fernandes Neto.
+    </footer>
+</body>
+
+</html>

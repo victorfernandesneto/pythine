@@ -4,12 +4,12 @@ from ..services.services_usuario import UsuarioService
 
 @pytest.fixture
 def usuario_exemplo():
-    return Usuario('pofesso', '1234')
+    return Usuario('pofesso@email.com', '1234')
 
 
 class TestClass:
     def test_cria_usuario(self, usuario_exemplo):
-        usuario = UsuarioService.cadastra_usuario('pofesso', '1234')
+        usuario = UsuarioService.cadastra_usuario('pofesso@email.com', '1234')
 
         assert usuario == usuario_exemplo
 

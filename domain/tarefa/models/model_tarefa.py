@@ -1,6 +1,6 @@
 class Tarefa:
-    def __init__(self, username, nome_da_tarefa, prazo):
-        self._username = username
+    def __init__(self, email, nome_da_tarefa, prazo):
+        self._email = email
         self._nome_da_tarefa = nome_da_tarefa
         self._prazo = prazo
         self._completa = False
@@ -37,8 +37,8 @@ class Tarefa:
 
 
     def __eq__(self, outro):
-        return self._username == outro._username and self._nome_da_tarefa == outro._nome_da_tarefa
+        return self._email == outro._email and self._nome_da_tarefa == outro._nome_da_tarefa
 
 
     def __repr__(self):
-        return f'Tarefa {self._nome_da_tarefa} do usuário {self._username}'
+        return f'Tarefa {self._nome_da_tarefa} do usuário {self._email}'

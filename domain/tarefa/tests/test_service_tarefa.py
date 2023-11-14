@@ -6,12 +6,12 @@ from ..services.services_tarefa import TarefaService
 
 @pytest.fixture
 def tarefa_exemplo():
-    return Tarefa('pofesso', 'Lavar a louça', 'Hoje')
+    return Tarefa('pofesso@email.com', 'Lavar a louça', 'Hoje')
 
 
 @pytest.fixture
 def usuario_exemplo():
-    return Usuario('pofesso', '1234')
+    return Usuario('pofesso@email.com', '1234')
 
 
 class TestClass:
@@ -63,7 +63,7 @@ class TestClass:
 
     
     def test_muda_nome_e_prazo_da_tarefa(self, tarefa_exemplo):
-        saida = Tarefa('pofesso', 'Comprar ração dos gatos', 'Hoje de manhã')
+        saida = Tarefa('pofesso@email.com', 'Comprar ração dos gatos', 'Hoje de manhã')
         
         TarefaService.edita_tarefa(
             tarefa_exemplo,

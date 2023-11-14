@@ -1,13 +1,13 @@
 class Usuario:
-    def __init__(self, username, senha):
-        self._username = username
+    def __init__(self, email, senha):
+        self._email = email
         self._senha    = senha
         self._lista_de_tarefas = []
 
 
     @property
-    def username(self):
-        return self._username
+    def email(self):
+        return self._email
     
     
     @property
@@ -20,9 +20,9 @@ class Usuario:
         return self._lista_de_tarefas
     
 
-    @username.setter
-    def username(self, username_novo):
-        self._username = username_novo
+    @email.setter
+    def email(self, email_novo):
+        self._email = email_novo
         
 
     @senha.setter
@@ -31,8 +31,8 @@ class Usuario:
 
     
     def __eq__(self, outro):
-        return self._username == outro._username
+        return self._email == outro._email
 
 
     def __repr__(self):
-        return f'Usuário {self._username}'
+        return f'Usuário {self._email}'

@@ -3,25 +3,25 @@ from ..models.model_tarefa import Tarefa
 
 @pytest.fixture
 def tarefa_exemplo():
-    return Tarefa('pofesso', 'Lavar a louça', 'Hoje')
+    return Tarefa('pofesso@email.com', 'Lavar a louça', 'Hoje')
 
 
 class TestClass:
     def test_eq(self, tarefa_exemplo):
-        saida = Tarefa('pofesso', 'Lavar a louça', 'Hoje')
+        saida = Tarefa('pofesso@email.com', 'Lavar a louça', 'Hoje')
 
         assert tarefa_exemplo == saida
 
 
     def test_repr(self, tarefa_exemplo):
-        saida = 'Tarefa Lavar a louça do usuário pofesso'
+        saida = 'Tarefa Lavar a louça do usuário pofesso@email.com'
 
         assert repr(tarefa_exemplo) == saida
 
 
  
     def test_atualiza_nome_da_tarefa(self, tarefa_exemplo):
-        saida = Tarefa('pofesso', 'Comer cu de curioso', 'Hoje')
+        saida = Tarefa('pofesso@email.com', 'Comer cu de curioso', 'Hoje')
 
         tarefa_exemplo.nome_da_tarefa = 'Comer cu de curioso'
 
@@ -29,7 +29,7 @@ class TestClass:
 
     
     def test_atualiza_prazo(self, tarefa_exemplo):
-        saida = Tarefa('pofesso', 'Comer cu de curioso', 'Amanhã')
+        saida = Tarefa('pofesso@email.com', 'Comer cu de curioso', 'Amanhã')
 
         tarefa_exemplo.prazo = 'Amanhã'
 
