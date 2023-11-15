@@ -1,65 +1,57 @@
 from django.shortcuts import render, redirect
 from .models import Task
 from .forms import TaskForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import DeleteView, ListView, CreateView
+from django.urls import reverse_lazy
 
-
-def task_index_view(request):
+def auth_user(request):
     if not request.user.is_authenticated:
-        return redirect('index')
-    user_id = request.user.id
-    tasks = Task.objects.filter(user_id=user_id)
-
-    return render(
-        request,
-        'tasks/tasks.html',
-        {'tasks': tasks}
-    )
+            return True
+    return False
 
 
-def new_task_view(request):
-    if not request.user.is_authenticated:
-        return redirect('index')
-    if request.method == 'POST':
-        form = TaskForm(request.POST)
-        if form.is_valid():
-            form.instance.user = request.user
-            form.save()
-            return redirect('task_index')
-    else:
-        form = TaskForm()
-    return render(
-        request,
-        'tasks/add.html',
-        {'form': form}
-    )
+class TaskListView(LoginRequiredMixin, ListView):
+    login_url = 'index'
+    redirect_field_name = ''
+    model = Task
+    template_name = 'tasks/tasks.html'
+    context_object_name = 'tasks'
+
+    def get_queryset(self, **kwargs):
+       user_id = self.request.user.id
+       queryset = super().get_queryset(**kwargs)
+       return queryset.filter(user_id=user_id)
 
 
-def toggle_finish_task(request):
-    # Conversar com o front end pra finalizado/não finalizado.
-    return redirect('task_index')
+class CreateTaskView(LoginRequiredMixin, CreateView):
+    login_url = 'index'
+    redirect_field_name = ''
+    model = Task
+    form_class = TaskForm
+    template_name = 'tasks/add.html'
 
-
-def delete_task(request, id):
-    if not request.user.is_authenticated:
-        return redirect('index')
-    query = Task.objects.get(id=id)
-    # Fazer popup de "tem certeza?"
-    query.delete()
-    return redirect('task_index')
-
-
-def edit_task_view(request, id):
-    if not request.user.is_authenticated:
-        return redirect('index')
-    query = Task.objects.get(id=id)
-    form = TaskForm(instance=query)
-
-    if request.method == 'POST':
-        form = TaskForm(request.POST, instance=query)
-        return redirect('task_index')
     
-    return render(
-        request,
-        'tasks/edit.html',
-        {'form': form}
-    )
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+    
+    
+    def get_success_url(self):
+        return reverse_lazy('task_list')
+
+
+def toggle_finish_task_view(request, id):
+    # Conversar com o front end pra finalizado/não finalizado.
+    pass
+
+
+class TaskDeleteView(LoginRequiredMixin, DeleteView):
+    login_url = 'index'
+    redirect_field_name = ''
+    model = Task
+    success_url = reverse_lazy('task_list')
+
+    # Sobrescrever é necessário pra "pular" o template de confirmação.
+    def get(self, request, *args, **kwargs): # Obs: não parece ser boa prática.
+        return self.delete(request, *args, **kwargs)

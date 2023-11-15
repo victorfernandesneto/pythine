@@ -28,9 +28,8 @@
 
     .navegacao{
         padding: 5% 10% 2% 10%;
-        column-gap: 70%;
         display: flex;
-        align-content: space-between;
+        justify-content: space-between;
         align-items: center;
     }
     
@@ -40,6 +39,10 @@
         color: white;
         border-radius: 10%;
         font-size: 1.5rem;
+    }
+
+    .botao-nav{
+        float: right;
     }
 
     .botao-vermelho{
@@ -94,4 +97,8 @@
 
     .redireciona-link{
         color: var(--cinza-escuro);
+    }
+
+    .imagem-bin{
+        width: 1.2rem;
     }

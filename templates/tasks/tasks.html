@@ -1,31 +1,26 @@
 {% extends 'shared/base.html' %}
 {% load static %}
-
-<body>
-    {% block content %}
+    <body>
+        {% block content %}
     <div class="navegacao">
         <a href="{% url 'logout' %}" class="logout">
             <img src="{% static 'assets/logout.png' %}">
-        <a href="{% url 'new_task'%}"><button class="botao">New</button></a>
+        <a href="{% url 'new_task'%}"><button class="botao botao-nav">New</button></a>
     </div>
     {% if tasks %}
     <table>
         <tr>
+            <th></th>
             <th>Task name</th>
             <th>Deadline</th>
-            <th>Finished</th>
             <th></th>
         </tr>
         {% for task in tasks %}
         <tr>
-            <td><a href="{% url 'edit_task' task.id %}">{{ task.task_name }}</a></td>
+            <td><input type="checkbox" id="checkbox{{task.id}}" {% if task.finished %} checked {% endif %}/></td>
+            <td>{{ task.task_name }}</td>
             <td>{{ task.deadline }}</td>
-            {% if task.finished %}
-            <td><input checked type="checkbox" id="finished"></td>
-            {% else %}
-            <td><input type="checkbox" id="finished"></td>
-            {% endif %}
-            <td><a href="{% url 'delete_task' task.id %}">Delete</a></td>
+            <td><a href="{% url 'delete_task' task.id %}"><img class="imagem-bin" src="{% static 'assets/bin.png' %}"></a></td>
         </tr>
         {% endfor %}
     </table>
@@ -34,5 +29,4 @@
     {% endif %}
     {% endblock %}
 </body>
-
 </html>
