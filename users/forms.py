@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 
 
 class LoginForm(forms.Form):
+    
     username = forms.CharField(
         label='Username',
         required=True
@@ -23,6 +24,7 @@ class LoginForm(forms.Form):
 
 
 class RegisterForm(forms.Form):
+
     username = forms.CharField(
         label='Username',
         required=True

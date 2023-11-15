@@ -1,13 +1,15 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from .forms import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.base import TemplateView
 from django.views.generic import FormView
 
 
 class IndexView(TemplateView):
     template_name = 'login/index.html'
+
 
     def get(self, request):
         if request.user.is_authenticated:
@@ -49,15 +51,18 @@ class CreateUserView(FormView):
     template_name = 'login/register.html'
     success_url = '/login/'
 
+
     def get(self, request):
         if request.user.is_authenticated:
             return redirect('task_list')
         return super().get(request)
     
+
     def post(self, request):
         if request.user.is_authenticated:
             return redirect('task_list')
         return super().post(request)
+
 
     def form_valid(self, form):
         username = form['username'].value()
