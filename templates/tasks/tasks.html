@@ -10,14 +10,14 @@
     {% if tasks %}
     <table>
         <tr>
-            <th></th>
             <th>Task name</th>
+            <th>Deadline</th>
             <th></th>
         </tr>
         {% for task in tasks %}
         <tr>
-            <td><input type="checkbox" id="checkbox{{task.id}}" {% if task.finished %} checked {% endif %}/></td>
             <td><a href="{% url 'task_update' task.id %}">{{ task.task_name }}</a></td>
+            <td>{{ task.deadline }}</td>
             <td><a href="{% url 'delete_task' task.id %}"><img class="imagem-bin" src="{% static 'assets/bin.png' %}"></a></td>
         </tr>
         {% endfor %}

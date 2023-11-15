@@ -6,13 +6,15 @@ class TaskForm(forms.ModelForm):
     
     class Meta:
         model = Task
-        fields = ['task_name', 'deadline']
+        fields = ['task_name', 'deadline', 'description']
         labels = {
             'task_name': 'Task name',
-            'deadline': 'DEADLINE'
+            'deadline': 'DEADLINE',
+            'description': 'Description'
         }
         widgets = {
             'task_name': forms.TextInput(),
             'deadline': forms.DateTimeInput(format='%d/%m/%Y %H:%M',
-                                            attrs={'type': 'datetime-local'})
+                                            attrs={'type': 'datetime-local'}),
+            'description': forms.TextInput()
         }

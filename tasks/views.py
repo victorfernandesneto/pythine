@@ -54,3 +54,4 @@ class TaskUpdateView(LoginRequiredMixin, UpdateView):
     model = Task
     form_class = TaskForm
     template_name = 'tasks/task_update.html'
+    success_url = '/tasks/'

@@ -8,6 +8,7 @@
     <form method="post" class="formulario">
         {% csrf_token %}
         {{ form.as_p }}
+        <input type="submit" value="Submit" class="botao botao-form">
     </form>
     {% endblock %}
 </body>
