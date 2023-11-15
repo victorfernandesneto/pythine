@@ -53,4 +53,4 @@ class TaskUpdateView(LoginRequiredMixin, UpdateView):
     redirect_field_name = ''
     model = Task
     form_class = TaskForm
-    template_name = 'tasks/task_detail.html'
+    template_name = 'tasks/task_update.html'
