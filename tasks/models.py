@@ -11,11 +11,6 @@ class Task(models.Model):
         null=False
     )
     deadline = models.DateTimeField(default=datetime.today(), blank=False)
-    description = models.TextField(
-        blank=True,
-        null=False,
-        default=''
-    )
     user = models.ForeignKey(
         to=User,
         on_delete=models.CASCADE,
