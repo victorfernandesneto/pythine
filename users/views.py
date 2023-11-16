@@ -2,7 +2,6 @@ from django.shortcuts import redirect
 from .forms import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.base import TemplateView
 from django.views.generic import FormView
 
@@ -67,7 +66,8 @@ class CreateUserView(FormView):
     def form_valid(self, form):
         username = form['username'].value()
         password = form['password1'].value()
-        User.objects.create_user(username=username, password=password)
+        email = form['email'].value()
+        User.objects.create_user(username=username, password=password, email=email)
         return super().form_valid(form)
 
 

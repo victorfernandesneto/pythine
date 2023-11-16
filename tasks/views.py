@@ -32,11 +32,6 @@ class CreateTaskView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-def toggle_finish_task_view(request, id):
-    # Conversar com o front end pra finalizado/não finalizado.
-    pass
-
-
 class TaskDeleteView(LoginRequiredMixin, DeleteView):
     login_url = 'index'
     redirect_field_name = ''
@@ -55,3 +50,4 @@ class TaskUpdateView(LoginRequiredMixin, UpdateView):
     form_class = TaskForm
     template_name = 'tasks/task_update.html'
     success_url = '/tasks/'
+    

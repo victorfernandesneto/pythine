@@ -5,8 +5,8 @@ from django.contrib.auth.models import User
 class LoginForm(forms.Form):
     
     username = forms.CharField(
-        label='Username',
-        required=True
+        label = 'Username',
+        required = True
     )
     password = forms.CharField(
         required = 'True',
@@ -28,6 +28,10 @@ class RegisterForm(forms.Form):
     username = forms.CharField(
         label='Username',
         required=True
+    )
+    email = forms.EmailField(
+        label = 'Email',
+        required = True
     )
     password1 = forms.CharField(
         label='Password',

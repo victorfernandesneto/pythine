@@ -17,7 +17,7 @@
         {% for task in tasks %}
         <tr>
             <td><a href="{% url 'task_update' task.id %}">{{ task.task_name }}</a></td>
-            <td>{{ task.deadline }}</td>
+            <td>{{ task.deadline|date:'d/m/Y H:i' }}</td>
             <td><a href="{% url 'delete_task' task.id %}"><img class="imagem-bin" src="{% static 'assets/bin.png' %}"></a></td>
         </tr>
         {% endfor %}
