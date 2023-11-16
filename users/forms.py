@@ -58,6 +58,13 @@ class RegisterForm(forms.Form):
             self.add_error('username', 'User already exists')
     
     
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        query = User.objects.filter(email=email).first()
+        if query:
+            self.add_error('email', 'Email already registered')
+    
+    
     def clean_password2(self):
         pass1 = self.cleaned_data.get('password1')
         pass2 = self.cleaned_data.get('password2')
