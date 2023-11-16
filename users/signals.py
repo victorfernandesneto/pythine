@@ -6,9 +6,10 @@ from django.conf import settings
 
 
 @receiver(post_save, sender=User)
-def task_post_save(sender, instance, **kwargs):
-    subject = 'New member in Pythine'
-    message = f'A new user joined us!!\n\nUsername: {instance.username}\nEmail: {instance.email}\n\nPythine'
-    from_email = settings.EMAIL_HOST_USER
-    recipient_list = [settings.EMAIL_GOD]
-    send_mail(subject, message, from_email, recipient_list)
+def task_post_save(sender, instance, created, **kwargs):
+    if created:
+        subject = 'New member in Pythine'
+        message = f'A new user joined us!!\n\nUsername: {instance.username}\nEmail: {instance.email}\n\nPythine'
+        from_email = settings.EMAIL_HOST_USER
+        recipient_list = [settings.EMAIL_GOD]
+        send_mail(subject, message, from_email, recipient_list)
