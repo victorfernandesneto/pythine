@@ -41,10 +41,10 @@ class TaskDeleteView(LoginRequiredMixin, DeleteView):
     login_url = 'index'
     redirect_field_name = ''
     model = Task
-    success_url = reverse_lazy('task_list')
+    success_url = '/tasks/'
 
-    # Sobrescrever é necessário pra "pular" o template de confirmação.
-    def get(self, request, *args, **kwargs): # Obs: não parece ser boa prática.
+    # Sobrescrever o método get é necessário pra "pular" o template de confirmação de deleção.
+    def get(self, request, *args, **kwargs):
         return self.delete(request, *args, **kwargs)
     
 
