@@ -12,7 +12,10 @@ class TaskForm(forms.ModelForm):
             'deadline': 'DEADLINE',
         }
         widgets = {
-            'task_name': forms.TextInput(),
+            'task_name': forms.TextInput(
+                attrs={'class': 'form-control'}
+            ),
             'deadline': forms.DateTimeInput(format='%d/%m/%Y %H:%M',
-                                            attrs={'type': 'datetime-local'}),
+                                            attrs={'type': 'datetime-local',
+                                                   'class': 'form-control mb-3'}),
         }

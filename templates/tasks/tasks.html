@@ -2,28 +2,30 @@
 {% load static %}
     <body>
         {% block content %}
-    <div class="navegacao">
-        <a href="{% url 'logout' %}" class="logout">
+    <div class="navbar my-5 mx-3">
+        <a href="{% url 'logout' %}">
             <img src="{% static 'assets/logout.png' %}">
-        <a href="{% url 'new_task'%}"><button class="botao botao-nav">New</button></a>
+        <a href="{% url 'new_task'%}"><button class="btn btn-success">New</button></a>
     </div>
     {% if tasks %}
-    <table>
-        <tr>
+    <div class="p-2">
+    <table class="table table-bordered">
+        <tr class="thead-dark text-center">
             <th>Task name</th>
             <th>Deadline</th>
             <th></th>
         </tr>
         {% for task in tasks %}
-        <tr>
-            <td><a href="{% url 'task_update' task.id %}">{{ task.task_name }}</a></td>
+        <tr class="text-center">
+            <td><a class="text-reset" href="{% url 'task_update' task.id %}">{{ task.task_name }}</a></td>
             <td>{{ task.deadline|date:'d/m/Y H:i' }}</td>
-            <td><a href="{% url 'delete_task' task.id %}"><img class="imagem-bin" src="{% static 'assets/bin.png' %}"></a></td>
+            <td><a href="{% url 'delete_task' task.id %}"><img class="w-auto" src="{% static 'assets/bin.png' %}" style="height: 1.5rem"></a></td>
         </tr>
         {% endfor %}
     </table>
+</div>
     {% else %}
-    <p>Nenhuma tarefa encontrada.</p>
+    <p class="text-center text-muted">No task found.</p>
     {% endif %}
     {% endblock %}
 </body>

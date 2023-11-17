@@ -6,12 +6,17 @@ class LoginForm(forms.Form):
     
     username = forms.CharField(
         label = 'Username',
-        required = True
+        required = True,
+        widget=forms.TextInput(attrs={
+            'placeholder': 'Example: pythine_user',
+            'class': 'form-control'})
     )
     password = forms.CharField(
         required = 'True',
-        widget = forms.PasswordInput(
-            attrs={'class': 'form-group'}
+        widget = forms.PasswordInput(attrs={
+            'placeholder': 'Example: imaproductiveperson123',
+            'class': 'form-control'
+        }
         )
     )
 
@@ -19,7 +24,7 @@ class LoginForm(forms.Form):
         username = self.cleaned_data.get('username')
         query = User.objects.filter(username=username).first()
         if not query:
-            self.add_error('username', 'User does not exist')
+            self.add_error('username', 'Wrong credentials for user, try again')
         
 
 
@@ -27,26 +32,38 @@ class RegisterForm(forms.Form):
 
     username = forms.CharField(
         label='Username',
-        required=True
+        required=True,
+        widget= forms.TextInput(
+            attrs={
+                'placeholder': 'Example: pythine_user',
+                'class': 'form-control'
+            }
+        )
     )
     email = forms.EmailField(
         label = 'Email',
-        required = True
+        required = True,
+        widget = forms.EmailInput(
+            attrs={
+                'placeholder': "Example: pythine_user@pythine.com",
+                'class': 'form-control'
+            }
+        )
     )
     password1 = forms.CharField(
         label='Password',
         required=True,
         min_length=8,
         widget=forms.PasswordInput(
-            attrs={'class': 'form-group'}
+            attrs={'class': 'form-control'}
         )
     )
     password2 = forms.CharField(
-        label='Confirm your password',
+        label='Confirm password',
         required=True,
         min_length=8,
         widget=forms.PasswordInput(
-            attrs={'class': 'form-group'}
+            attrs={'class': 'form-control'}
         )
     )
 

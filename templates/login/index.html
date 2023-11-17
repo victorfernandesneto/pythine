@@ -1,11 +1,26 @@
 {% extends 'shared/base.html' %}
+{% block content %}
+<head>
+    <style>
+        .custom-btn {
+            font-size: 2rem;
+            background-color: purple;
+        }
+    </style>
+</head>
 <body>
-    {% block content %}
-    <div class="botoes-login">
-        <a href="{% url 'login'%}"><button class="botao login">Login</button></a>
-        <a href="{% url 'register'%}"><button class="botao login">Cadastro</button></a>
-    </div>
+<div class="d-flex flex-column align-items-center justify-content-end" style="height: 70vh;">
+    <div class="mb-4">
+            <a href="{% url 'login'%}">
+                <button class="text-center btn btn-primary btn-lg custom-btn">Login</button>
+            </a>
+        </div>
+    <div>
+            <a href="{% url 'register'%}">
+                <button class="btn btn-primary btn-lg custom-btn">Cadastro</button>
+            </a>
+        </div>
+</div>
     {% endblock %}
 </body>
-
 </html>

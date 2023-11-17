@@ -1,14 +1,22 @@
 {% extends 'shared/base.html' %}
+
 <body>
     {% block content %}
-    <form method="post" class="formulario registro">
-        <table>
-            {% csrf_token %}
-            {{ form.as_table }}
-        </table>
-        <input type="submit" value="Login" class="botao botao-form">
+    <div class="d-flex flex-column justify-content-end" style="height: 60vh;">
+    <form method="post" class="p-4">
+        {% csrf_token %}
+        <div class="form-group">
+            <p class="mb-1 font-weight-bold">{{ form.username.label }}</p>
+            {{ form.username }}
+        </div>
+        <div class="form-group">
+            <p class="mb-1 font-weight-bold">{{ form.password.label }}</p>
+            {{ form.password }}
+        </div>
+        <input type="submit" value="Login" class="d-flex btn btn-primary mb-3" style="background-color: purple;">
     </form>
-    <p class="redireciona-login">Not a member? <a href="{% url 'register' %}" class="redireciona-link">Register</a></p>
+    <p class="text-center text-muted">Not a member? <a href="{% url 'register' %}" class="text-reset">Register</a></p>
+    </div>
     {% endblock %}
 </body>
 
